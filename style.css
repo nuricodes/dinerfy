@@ -55,14 +55,60 @@ input {
       cursor: pointer;
       text-align: center;
   }
+  .single-meal {
+      margin: 30px auto;
+      width: 70%;
+  }
+  .single-meal img {
+      width: 620px;
+      margin: 15px;
+  }
+
+  .p {
+    margin: 0;
+    letter-spacing: 0.5px;
+    line-height: 1.5;
+  }
+
+.ing-list {
+    padding-left: 0;
+    list-style-type: none;
+}
+.ing-li {
+    border: 1px solid black;
+    border-radius: 5px;
+    border-color: black;
+    display: inline-block;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 5px;
+    margin: 0 5px 5px 0;
+}
   
 
 @media (max-width: 800px) {
+    .meal {
+        grid-template-columns: repeat(3, 1fr);
+    }
 }
 @media (max-width: 700px) {
+    .meal {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .meal {
+        /* height: 200px;
+        width: 200px; */
+    }
 }
 @media (max-width: 500px) {
     input[type='text'] {
         width: 100%
+    }
+    .meals {
+        grid-template-columns: 1fr;
+    }
+    .meal {
+        height: 450px;
+        /* width: 200px; */
     }
 }

@@ -7,7 +7,6 @@ const search = document.getElementById('search'),
     singleMealElement = document.getElementById('single-meal');
 
 
-//functions/event handlers
 
 //search meal and fetch from api
 const searchMeal = (e) => {
@@ -54,12 +53,61 @@ const searchMeal = (e) => {
     }
 }
 
+// Fetch meal by ID & return ID of clicked
+const getMealByID = (mealID) => {
+    // make a another fetch this time by ID
+    fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealID}`)
+        .then(res => res.json())
+        .then(data => {
+            // console.log(data);//returns data attached to id
+            const meal = data.meals[0]; //returns data of clicked card
 
+            addMealToDOM(meal); //introduced fn here create below
+        })
+}
+
+// Add meal to DOM
+function addMealToDOM(meal) {
+    const ingredients = [];
+    //for loop to get ingredients bc of the way they're listed in api
+    for (let i = 1; i <= 20; i++) {
+        //to mimick this structure "strIngredient1" interpolate the index
+        if (meal[`strIngredient${i}`]) {
+            ingredients.push(`${meal[`strIngredient${i}`]} - ${meal[`strMeasure${i}`]}`)
+        } else {
+            break; //if it's empty break out of the loop
+        }
+    }
+    singleMealElement.innerHTML = `
+                <div class= "single-meal card">
+                <h1 class="card-title">${meal.strMeal}</h1>
+                <img src="${meal.strMealThumb}" alt="${meal.strMeal} class="card-img" />
+                <div class="single-meal-info">
+                ${meal.Area ? `<p>${meal.Area}</p>` : ''}
+                </div>
+                <h3>Instructions</h3>
+                <p class="card-text p">${meal.strInstructions}</p>
+                <br>
+                <div class="main">
+                    <h3>Ingredients</h3>
+                    <ul class="ing-list">
+                    ${ingredients.map(ing => `<li class="ing-li">${ing}</li>`).join(' ')} 
+                    </ul>
+                    </div>
+                <a href="${meal.strYoutube}" class="btn btn-primary">Check out the tutorial here!</a>
+                <br>
+                </div>
+                </div>
+    `
+
+}
 
 //Event listeners
 
 submit.addEventListener('submit', searchMeal);
 mealsElement.addEventListener('click', e => {
+    mealsElement.innerHTML = ''; //clear searches
+    resultHeading.innerHTML = '';
     //in the mealinfo container path find 
     const mealInfo = e.path.find(item => {
         // console.log(item); returns all the elements/items in the container
@@ -75,6 +123,6 @@ mealsElement.addEventListener('click', e => {
     if (mealInfo) {
         const mealID = mealInfo.getAttribute('data-mealID');
         // console.log(mealID) //when clicked gets id
-
+        getMealByID(mealID);
     }
 })
