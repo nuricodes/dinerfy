@@ -23,14 +23,14 @@ const searchMeal = (e) => {
             .then(res => res.json())
             .then(data => {
                 console.log(data);
-                resultHeading.innerHTML = `<h2>Search results for <b>'${searchedTerm}'</b>:</h2>`
+                resultHeading.innerHTML = `<h2 style="text-align: center">Search results for <b>'${searchedTerm}'</b>:</h2>`
                 //if meal found/not found
-                if (data.meals === null) {
-                    resultsHeading.innerHTML = `<b>${searchedTerm}</b> not found`
+                if (data.meals === null || data.meals === '') {
+                    resultsHeading.innerHTML = `<h2><b>${searchedTerm}</b> not found</h2>`
                 } else {
                     //map through the meals Elements
                     mealsElement.innerHTML = data.meals.map(meal => `
-                    <div class="card meal" style="width: 18rem;">
+                    <div class="card meals" style="width: 25rem; text-align: center">
                     <img src="${meal.strMealThumb}" class="card-img-top" alt="${meal.strMeal}">
                     <div class="card-body meal-info" data-mealID="${meal.idMeal}">
                     <h5 class="card-title">${meal.strMeal}</h5>
@@ -66,6 +66,36 @@ const getMealByID = (mealID) => {
         })
 }
 
+// fetch random meal
+function getRandomMeal() {
+    // clear meals and heading
+    mealsElement.innerHTML = '';
+    resultHeading.innerHTML = '';
+
+
+    fetch('https://www.themealdb.com/api/json/v1/1/random.php')
+        .then(res => res.json())
+        .then(data => {
+            const meal = data.meals[0];
+
+            addMealToDOM(meal);
+        });
+}
+
+// hard code weekly meal
+function getWeeklyMeal() {
+    mealsElement.innerHTML = '';
+    resultHeading.innerHTML = '';
+
+    fetch('https://www.themealdb.com/api/json/v1/1/lookup.php?i=53000')
+        .then(res => res.json())
+        .then(data => {
+            const meal = data.meals[0]
+
+            addMealToDOM(meal);
+        });
+}
+
 // Add meal to DOM
 function addMealToDOM(meal) {
     const ingredients = [];
@@ -79,9 +109,9 @@ function addMealToDOM(meal) {
         }
     }
     singleMealElement.innerHTML = `
-                <div class= "single-meal card">
+                <div class= "single-meal card meal">
                 <h1 class="card-title">${meal.strMeal}</h1>
-                <img src="${meal.strMealThumb}" alt="${meal.strMeal} class="card-img" />
+                <img src="${meal.strMealThumb}" alt="${meal.strMeal} class="card-img-top" />
                 <div class="single-meal-info">
                 ${meal.Area ? `<p>${meal.Area}</p>` : ''}
                 </div>
@@ -105,6 +135,11 @@ function addMealToDOM(meal) {
 //Event listeners
 
 submit.addEventListener('submit', searchMeal);
+random.addEventListener('click', getRandomMeal);
+weekly.addEventListener('click', getWeeklyMeal);
+
+
+
 mealsElement.addEventListener('click', e => {
     mealsElement.innerHTML = ''; //clear searches
     resultHeading.innerHTML = '';
@@ -126,3 +161,4 @@ mealsElement.addEventListener('click', e => {
         getMealByID(mealID);
     }
 })
+

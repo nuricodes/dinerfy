@@ -1,36 +1,34 @@
 * {
-    border-sizing: border-box;
-}
-
-body {
-    color: white;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    margin: 0;
-}
-
-.container {
-    margin: auto;
-    max-width: 800px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-}
-
-.flex {
-    display: block;
+    box-sizing: border-box;
 }
 
 input {
-    margin:0 auto;
-    width:300px;
-    border-radius:30px;
-    border:2px solid #dcdcdc;
+    /* margin: 0 auto; */
+    width: 500px;
+    border-radius: 30px;
+    border: 2px solid #dcdcdc;
     background-color: white;
+    /* text-decoration: none; */
+}
+.landing {
+    background-image: url('https://images.unsplash.com/photo-1495195134817-aeb325a55b65?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1355&q=80');
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 40px;
+    /* text-align: center; */
+    /* display: flex; */
+    /* flex-direction: column;
+    align-items: center;
+    justify-content: center; */
+    text-align: center;
+}
+h1 {
+    font-family: 'Libre Baskerville', serif;
+    text-decoration: none;
+    color: #333333;
 }
 .search-btn {
-    background-color: white;
+    background-color: transparent;
     border: 0;
 }
 .button{
@@ -41,9 +39,14 @@ input {
     padding: 10px 20px;
     margin:5px;
     border-radius:4px;
-    outline:none;
+    outline: none;
     text-align: center;
-    
+    border: .5px solid #333333;
+  }
+  .button:hover{
+    border: 1px solid #c8c8c8;
+    padding: 9px 19px;
+    color:#808080;
   }
   .meals {
     display: grid;
@@ -84,20 +87,24 @@ input {
     padding: 5px;
     margin: 0 5px 5px 0;
 }
-  
+
 
 @media (max-width: 800px) {
-    .meal {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
-@media (max-width: 700px) {
-    .meal {
+    .meals {
         grid-template-columns: repeat(2, 1fr);
     }
     .meal {
-        /* height: 200px;
-        width: 200px; */
+        height: 450px;
+        width: 200px;
+    }
+}
+@media (max-width: 700px) {
+    .meals {
+        grid-template-columns: (2, 1fr);
+    }
+    .meal {
+        height: 450px;
+        width: 400px;
     }
 }
 @media (max-width: 500px) {
@@ -109,6 +116,6 @@ input {
     }
     .meal {
         height: 450px;
-        /* width: 200px; */
+        width: 200px;
     }
 }
