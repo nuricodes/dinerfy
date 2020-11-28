@@ -57,5 +57,24 @@ const searchMeal = (e) => {
 
 
 //Event listeners
+
 submit.addEventListener('submit', searchMeal);
-mealsElement.addEventListener('click',)
+mealsElement.addEventListener('click', e => {
+    //in the mealinfo container path find 
+    const mealInfo = e.path.find(item => {
+        // console.log(item); returns all the elements/items in the container
+        //if the item has a class
+        if (item.classList) {
+            //return the one that contains meal-info 
+            return item.classList.contains('meal-info');
+        } else {
+            return false;
+        }
+    });
+
+    if (mealInfo) {
+        const mealID = mealInfo.getAttribute('data-mealID');
+        // console.log(mealID) //when clicked gets id
+
+    }
+})
