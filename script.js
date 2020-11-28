@@ -7,7 +7,7 @@ const search = document.getElementById('search'),
     singleMealElement = document.getElementById('single-meal');
 
 
-//functions/event handles
+//functions/event handlers
 
 //search meal and fetch from api
 const searchMeal = (e) => {
@@ -31,17 +31,23 @@ const searchMeal = (e) => {
                 } else {
                     //map through the meals Elements
                     mealsElement.innerHTML = data.meals.map(meal => `
-                    <div class="card" style="width: 25rem;">
+                    <div class="card meal" style="width: 18rem;">
                     <img src="${meal.strMealThumb}" class="card-img-top" alt="${meal.strMeal}">
-                    <div class="card-body">
+                    <div class="card-body meal-info" data-mealID="${meal.idMeal}">
                     <h5 class="card-title">${meal.strMeal}</h5>
-                    <p class="card-text">${meal.strInstructions}</p>
+                    <ul class="list-group list-group-flush">
+                    <li class="list-group-item">${meal.strArea}</li>
+                    </ul>
                     <a href="${meal.strYoutube}" class="btn btn-primary">Check out the Tutorial</a>
                     </div>
                     </div>
                     `)
+                        //to make it display as a string since we looped through an array
+                        .join('');
                 }
-            })
+            });
+        //clear search text
+        search.value = '';
 
     } else {
         alert('Please enter a search term')
@@ -52,3 +58,4 @@ const searchMeal = (e) => {
 
 //Event listeners
 submit.addEventListener('submit', searchMeal);
+mealsElement.addEventListener('click',)
