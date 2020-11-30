@@ -7,7 +7,10 @@ body, html {
 
 #container {
     min-height: 100%;
-    padding-bottom: 100px;
+    padding-bottom: 80px;
+}
+#backhome {
+    cursor: pointer;
 }
 
 input {
@@ -29,6 +32,10 @@ input {
     align-items: center;
     justify-content: center; */
     text-align: center;
+}
+.col-sm {
+margin: 10px;
+
 }
 h1 {
     font-family: 'Libre Baskerville', serif;
@@ -56,6 +63,9 @@ h1 {
     padding: 9px 19px;
     color:#808080;
   }
+  h6 {
+      padding-top: 10px;
+  }
   .meals {
     display: grid;
     grid-template-columns: repeat(3, 1fr); 
@@ -70,10 +80,6 @@ h1 {
   .single-meal {
       margin: 30px auto;
       width: 70%;
-  }
-  .single-meal img {
-      /* width: 620px;
-      margin: 15px; */
   }
 
   .p {

@@ -1,5 +1,12 @@
+/////////////////////////////////////////////////
+// SELECT ELEMENTS
+/////////////////////////////////////////////////
 const search = document.getElementById('search'),
-    home = document.getElementById('homeDisplay'),
+    homeDisplay = document.getElementById('homeDisplay'),
+    home = document.getElementById('home'),
+    curry = document.getElementById('curry'),
+    soup = document.getElementById('soup'),
+    pie = document.getElementById('pie'),
     submit = document.getElementById('submit'),
     weekly = document.getElementById('weekly'),
     random = document.getElementById('random'),
@@ -9,7 +16,7 @@ const search = document.getElementById('search'),
 
 
 /////////////////////////////////////////////////
-//
+// SEARCHING
 /////////////////////////////////////////////////
 //search meal and fetch from api
 const searchMeal = (e) => {
@@ -19,17 +26,18 @@ const searchMeal = (e) => {
     singleMealElement.innerHTML = '';
     // store what is searched into a variable
     const searchedTerm = search.value;
-    //check for empty
+    //return searched term barring white space
     if (searchedTerm.trim()) {
         //fetch the api interpolate the searchedterm
         fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${searchedTerm}`)
             .then(res => res.json())
             .then(data => {
-                console.log(data);
+                homeDisplay.innerHTML = ''; //hides home display
+                // console.log(data);
                 resultHeading.innerHTML = `<h2 style="text-align: center">Search results for <b>'${searchedTerm}'</b>:</h2>`
                 //if meal found/not found
                 if (data.meals === null || data.meals === '') {
-                    resultsHeading.innerHTML = `<h2><b>${searchedTerm}</b> not found</h2>`
+                    resultHeading.innerHTML = `<p style="text-align: center;"><b>${searchedTerm}</b> is not found try searching for something else</p>`
                 } else {
                     //map through the meals Elements
                     mealsElement.innerHTML = data.meals.map(meal => `
@@ -53,10 +61,12 @@ const searchMeal = (e) => {
 
     } else {
         alert('Please enter a search term')
+        homeDisplay
     }
 }
-
-// Fetch meal by ID & return ID of clicked
+/////////////////////////////////////////////////
+// RETURN ID OF CLICKED
+/////////////////////////////////////////////////
 const getMealByID = (mealID) => {
     // make a another fetch this time by ID
     fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealID}`)
@@ -69,9 +79,13 @@ const getMealByID = (mealID) => {
         })
 }
 
+/////////////////////////////////////////////////
+// I'M FEELING HUNGRY BUTTON
+/////////////////////////////////////////////////
 // fetch random meal
 function getRandomMeal() {
     // clear meals and heading
+    homeDisplay.innerHTML = '';
     mealsElement.innerHTML = '';
     resultHeading.innerHTML = '';
 
@@ -85,8 +99,12 @@ function getRandomMeal() {
         });
 }
 
+/////////////////////////////////////////////////
+// RECIPE OF THE WEEK
+/////////////////////////////////////////////////
 // hard code weekly meal
 function getWeeklyMeal() {
+    homeDisplay.innerHTML = '';
     mealsElement.innerHTML = '';
     resultHeading.innerHTML = '';
 
@@ -99,7 +117,50 @@ function getWeeklyMeal() {
         });
 }
 
-// Add meal to DOM
+/////////////////////////////////////////////////
+// Curry
+/////////////////////////////////////////////////
+function getCurry() {
+    homeDisplay.innerHTML = '';
+    fetch('https://www.themealdb.com/api/json/v1/1/lookup.php?i=52820')
+        .then(res => res.json())
+        .then(data => {
+            const curry = data.meals[0]
+
+            addMealToDOM(curry)
+        })
+}
+
+/////////////////////////////////////////////////
+// Soup
+/////////////////////////////////////////////////
+function getSoup() {
+    homeDisplay.innerHTML = '';
+    fetch('https://www.themealdb.com/api/json/v1/1/lookup.php?i=52842')
+        .then(res => res.json())
+        .then(data => {
+            const soup = data.meals[0]
+
+            addMealToDOM(soup)
+        })
+}
+/////////////////////////////////////////////////
+// Pie
+/////////////////////////////////////////////////
+function getPie() {
+    homeDisplay.innerHTML = '';
+    fetch('https://www.themealdb.com/api/json/v1/1/lookup.php?i=52882')
+        .then(res => res.json())
+        .then(data => {
+            const pie = data.meals[0]
+
+            addMealToDOM(pie)
+        })
+}
+
+/////////////////////////////////////////////////
+// ADD MEALS TO DOM
+/////////////////////////////////////////////////
 function addMealToDOM(meal) {
     const ingredients = [];
     //for loop to get ingredients bc of the way they're listed in api
@@ -135,11 +196,17 @@ function addMealToDOM(meal) {
 
 }
 
-//Event listeners
+/////////////////////////////////////////////////
+// EVENT LISTENERS
+/////////////////////////////////////////////////
 
 submit.addEventListener('submit', searchMeal);
 random.addEventListener('click', getRandomMeal);
 weekly.addEventListener('click', getWeeklyMeal);
+curry.addEventListener('click', getCurry);
+soup.addEventListener('click', getSoup);
+pie.addEventListener('click', getPie);
+
 
 
 
