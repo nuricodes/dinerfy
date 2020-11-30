@@ -18,41 +18,78 @@
 </head>
 
 <body>
-
-    <header class="landing">
-        <img src="https://i.imgur.com/QtOIkE2.png" width="100">
-        <h1>DinnerFy</h1>
-        <form id="submit">
-            <div class="bar">
-                <input id="search" class="searchbar" type="text" title="Search" placeholder="What's for dinner?">
-                <button type="submit" class="search-btn" id="submit">
-                    <i class="fas fa-search"></i>
-                </button>
+    <div id="container">
+        <header class="landing">
+            <img src="https://i.imgur.com/QtOIkE2.png" width="100">
+            <h1>DinnerFy</h1>
+            <form id="submit">
+                <div class="bar">
+                    <input id="search" class="searchbar" type="text" title="Search" placeholder="What's for dinner?">
+                    <button type="submit" class="search-btn" id="submit">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </form>
+            <div id="buttons">
+                <button class="button buttons" id="weekly" type="button">Recipe of the Week</button>
+                <button class="button buttons" id="random" type="button">I'm Feeling Hungry</button>
             </div>
-        </form>
-        <div id="buttons">
-            <button class="button buttons" id="weekly" type="button">Recipe of the Week</button>
-            <button class="button buttons" id="random" type="button">I'm Feeling Lucky</button>
+        </header>
+        <div id="homeDisplay">
+            <!-- <h4 style="text-align: center;">Explore this month's top choices...</h4>
+            <div class="row">
+                <div class="card col-sm" style="width: 18rem;">
+                    <img src="..." class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title"></h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                            the
+                            card's content.</p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
+                <div class="card col-sm" style="width: 18rem;">
+                    <img src="..." class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                            the
+                            card's content.</p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
+                <div class="card col-sm" style="width: 18rem;">
+                    <img src="..." class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                            the
+                            card's content.</p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
+            </div> -->
         </div>
-    </header>
 
-    <div id="display">
-        <div id="result-heading"></div>
-        <div id="meals" class="meals"></div>
-        <div id="single-meal" class="meal"></div>
+        <div id="display">
+            <div id="result-heading"></div>
+            <div id="meals" class="meals"></div>
+            <div id="single-meal" class="meal"></div>
+        </div>
     </div>
 
 
-    <!-- <footer class="footer">
+    <footer class="footer">
         <div class="footer-right">
             <a href="https://twitter.com/nurijs_"><i class="fab fa-twitter-square"></i></a>
             <a href="https://www.linkedin.com/in/ayni-nur-a152541b0/"><i class="fab fa-linkedin"></i></a>
             <a href="https://github.com/ayninur"><i class="fab fa-github-square"></i></a>
         </div>
         <div class="footer-left">
-            <p>Made with <i class="far fa-heart"></i> <br>&copy; 2020</p>
+            <p>Made with <i class="far fa-heart"></i> by <a
+                    href="https://www.linkedin.com/in/ayni-nur-a152541b0/">Ayni</a> <br>&copy; 2020</p>
         </div>
-    </footer> -->
+    </footer>
 </body>
 
 </html>

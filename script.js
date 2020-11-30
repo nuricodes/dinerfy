@@ -1,4 +1,5 @@
 const search = document.getElementById('search'),
+    home = document.getElementById('homeDisplay'),
     submit = document.getElementById('submit'),
     weekly = document.getElementById('weekly'),
     random = document.getElementById('random'),
@@ -7,7 +8,9 @@ const search = document.getElementById('search'),
     singleMealElement = document.getElementById('single-meal');
 
 
-
+/////////////////////////////////////////////////
+//
+/////////////////////////////////////////////////
 //search meal and fetch from api
 const searchMeal = (e) => {
     //prevent default of submit
@@ -30,7 +33,7 @@ const searchMeal = (e) => {
                 } else {
                     //map through the meals Elements
                     mealsElement.innerHTML = data.meals.map(meal => `
-                    <div class="card meals" style="width: 25rem; text-align: center">
+                    <div class="card meals" style="text-align: center">
                     <img src="${meal.strMealThumb}" class="card-img-top" alt="${meal.strMeal}">
                     <div class="card-body meal-info" data-mealID="${meal.idMeal}">
                     <h5 class="card-title">${meal.strMeal}</h5>
