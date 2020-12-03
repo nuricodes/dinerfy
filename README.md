@@ -1,3 +1,3 @@
-![](https://imgur.com/a/UtGKOto)
+![](https://imgur.com/a/UtGKOto.png)
 
-### Dinnerly 
+### Dinnerfy 
